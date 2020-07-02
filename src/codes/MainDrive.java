@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class MainDrive {
@@ -95,7 +96,32 @@ public class MainDrive {
 //				이 줄의 코드가 실행된다  : break를 안만났다 => 불러온 내용이null이 아님.
 //				실제로 파일에 적혀있던 한줄이 line에 담겨있다.
 				
-				System.out.println(line);
+//				System.out.println(line);
+//				사용자의 정보를가공해서 출력
+//				조경진(33세) : 010-5112-3237 양식으로 가공.
+				
+//				사용자 이름 / 폰번 / 나이를 분리해서 변수로 저장하자.
+				
+//				String클래스의 split 기능으로 정보항목들을 (, 기준으로) 분리.
+				String[]  userInfos = line.split(",");
+				
+//				이름 폰번 나이 저장
+				String userName = userInfos[0];
+				String userPhoneNum = userInfos[1];
+//				나이 :생년을 저장하고 계산. => 생년 int
+//				String을 int로 변환. => Wrapper클래스(Integer활용)
+				int userBirthYear = Integer.parseInt(userInfos[2]);
+				
+//				생년을 나이로 변환. => 매년 정확한 나이가 나오도록.
+				
+//				캘린더 객체 생성
+				Calendar now = Calendar.getInstance();
+				
+				
+				int userAge =  now.get(Calendar.YEAR) - userBirthYear  + 1;
+				
+				String userInfoMessage = String.format("%s(%d세) : %s", userName , userAge, userPhoneNum);
+				
 				
 			}
 			
